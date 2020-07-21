@@ -32,6 +32,7 @@ cbuffer WorldBuffer : register(b0)
 	matrix Projection;
 	matrix InverseWorld;
 
+	matrix TextureTransform;
 	Material mMaterial;
 }
 
@@ -46,6 +47,8 @@ struct VertexInput
 	float3 Position : POSITION;
 	float2 Texture : TEXCOORD0;
 	float3 Normal : NORMAL;
+	float3 Tangent : TANGENT;
+	float3 BitTangent : BITTANGENT;
 };
 
 struct PixelInput
@@ -54,8 +57,11 @@ struct PixelInput
 	float4 PositionH : SV_POSITION;
 	float2 Texture : TEXCOORD0;
 	float3 Normal : NORMAL;
+	float3 Tangent : TANGENT;
+	float3 BitTangent : BITTANGENT;
 };
 
 SamplerState SamplerAnisotropic : register(s0);
 
 Texture2D TextureDiffuse : register(t0);
+Texture2D TextureNormal : register(t1);

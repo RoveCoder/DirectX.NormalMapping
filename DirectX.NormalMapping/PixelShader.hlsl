@@ -44,6 +44,25 @@ float4 main(PixelInput input) : SV_TARGET
 	// Sample Texture
 	float4 diffuse_texture = TextureDiffuse.Sample(SamplerAnisotropic, input.Texture);
 
+	// Normal Texture
+	float3 normalMapSample = TextureNormal.Sample(SamplerAnisotropic, input.Texture).rgb;
+
+	// Uncompress each component from [0,1] to [-1,1].
+	float3 normalT = 2.0f * normalMapSample - 1.0f;
+
+	// Build orthonormal basis.
+	float3 N = input.Normal;
+	// float3 T = normalize(pin.TangentW - dot(pin.TangentW, N) * N); //< This seems to fix the normal swap, but it feels wrong
+	float3 T = normalize(input.Normal - dot(input.Tangent, N) * N);
+	float3 B = cross(N, T);
+
+	float3x3 TBN = float3x3(T, B, N);
+
+	// Transform from tangent space to world space.
+	float3 bumpedNormalW = mul(normalT, TBN);
+
+	input.Normal = bumpedNormalW;
+
 	// Directional Light
 	float4 directional_light = CalculateDirectionalLighting(input.Position, input.Normal);
 

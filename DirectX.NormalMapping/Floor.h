@@ -21,4 +21,5 @@ private:
 	ID3D11Buffer* m_IndexBuffer = nullptr;
 
 	ID3D11ShaderResourceView* m_DiffuseTexture = nullptr;
+	ID3D11ShaderResourceView* m_NormalTexture = nullptr;
 };

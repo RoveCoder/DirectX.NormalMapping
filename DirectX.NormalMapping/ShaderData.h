@@ -16,6 +16,7 @@ _declspec(align(16)) struct ConstantBuffer
     DirectX::XMMATRIX mProjection;
     DirectX::XMMATRIX mWorldInverse;
 
+	DirectX::XMMATRIX mTextureTransform = DirectX::XMMatrixTranslation(1.0f, 1.0f, 1.0f);
 	Material mMaterial;
 };
 

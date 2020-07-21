@@ -41,6 +41,9 @@ bool Crate::Load()
     ID3D11Resource* resource = nullptr;
     DX::ThrowIfFailed(DirectX::CreateDDSTextureFromFile(m_Renderer->GetDevice(), L"Textures\\crate_diffuse.dds", &resource, &m_DiffuseTexture));
     resource->Release();
+    
+    DX::ThrowIfFailed(DirectX::CreateDDSTextureFromFile(m_Renderer->GetDevice(), L"Textures\\crate_normal.dds", &resource, &m_NormalTexture));
+    resource->Release();
 
 	return true;
 }
@@ -80,6 +83,7 @@ void Crate::Render(Camera* camera)
     m_Renderer->GetDeviceContext()->UpdateSubresource(worldConstantBuffer, 0, nullptr, &cb, 0, 0);
 
     m_Renderer->GetDeviceContext()->PSSetShaderResources(0, 1, &m_DiffuseTexture);
+    m_Renderer->GetDeviceContext()->PSSetShaderResources(1, 1, &m_NormalTexture);
 
     // Render geometry
     m_Renderer->GetDeviceContext()->DrawIndexed((UINT)m_MeshData.indices.size(), 0, 0);

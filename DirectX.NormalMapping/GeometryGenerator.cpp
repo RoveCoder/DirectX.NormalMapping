@@ -21,11 +21,11 @@ namespace
 			float u = x / height + 0.5f;
 			float v = z / height + 0.5f;
 
-			meshData->vertices.push_back(Vertex(x, y, z, 0.0f, 1.0f, 0.0f, u, v));
+			meshData->vertices.push_back(Vertex(x, y, z, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, u, v));
 		}
 
 		// Cap center vertex.
-		meshData->vertices.push_back(Vertex(0.0f, y, 0.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f));
+		meshData->vertices.push_back(Vertex(0.0f, y, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.5f));
 
 		// Index of center vertex.
 		unsigned int centerIndex = (unsigned int)meshData->vertices.size() - 1;
@@ -59,11 +59,11 @@ namespace
 			float u = x / height + 0.5f;
 			float v = z / height + 0.5f;
 
-			meshData->vertices.push_back(Vertex(x, y, z, 0.0f, -1.0f, 0.0f, u, v));
+			meshData->vertices.push_back(Vertex(x, y, z, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, u, v));
 		}
 
 		// Cap center vertex.
-		meshData->vertices.push_back(Vertex(0.0f, y, 0.0f, 0.0f, -1.0f, 0.0f, 0.5f, 0.5f));
+		meshData->vertices.push_back(Vertex(0.0f, y, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.5f));
 
 		// Cache the index of center vertex.
 		unsigned int centerIndex = (unsigned int)meshData->vertices.size() - 1;
@@ -81,35 +81,35 @@ void Geometry::CreateBox(float width, float height, float depth, MeshData* mesh)
 {
 	Vertex vertices[] =
 	{
-		{ -width, -height, -depth, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f },
-		{ -width, +height, -depth, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f },
-		{ +width, +height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f },
-		{ +width, -height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f },
+		{ -width, -height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f },
+		{ -width, +height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+		{ +width, +height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f },
+		{ +width, -height, -depth, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f },
 
-		{ -width, -height, +depth, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f },
-		{ +width, -height, +depth, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f },
-		{ +width, +height, +depth, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f },
-		{ -width, +height, +depth, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f },
+		{ -width, -height, +depth, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,  1.0f, 1.0f },
+		{ +width, -height, +depth, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,  0.0f, 1.0f },
+		{ +width, +height, +depth, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,  0.0f, 0.0f },
+		{ -width, +height, +depth, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,  1.0f, 0.0f },
 
-		{ -width, +height, -depth, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f },
-		{ -width, +height, +depth, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f },
-		{ +width, +height, +depth, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f },
-		{ +width, +height, -depth, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f },
+		{ -width, +height, -depth, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f },
+		{ -width, +height, +depth, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+		{ +width, +height, +depth, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f },
+		{ +width, +height, -depth, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f },
 
-		{ -width, -height, -depth, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f },
-		{ +width, -height, -depth, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f },
-		{ +width, -height, +depth, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f },
-		{ -width, -height, +depth, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f },
+		{ -width, -height, -depth, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f },
+		{ +width, -height, -depth, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f },
+		{ +width, -height, +depth, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+		{ -width, -height, +depth, 0.0f, -1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f },
 
-		{ -width, -height, +depth, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f },
-		{ -width, +height, +depth, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
-		{ -width, +height, -depth, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f },
-		{ -width, -height, -depth, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f },
+		{ -width, -height, +depth, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f },
+		{ -width, +height, +depth, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f },
+		{ -width, +height, -depth, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f },
+		{ -width, -height, -depth, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f },
 
-		{ +width, -height, -depth, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f },
-		{ +width, +height, -depth, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
-		{ +width, +height, +depth, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f },
-		{ +width, -height, +depth, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f }
+		{ +width, -height, -depth, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f },
+		{ +width, +height, -depth, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f },
+		{ +width, +height, +depth, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f },
+		{ +width, -height, +depth, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f }
 	};
 
 	unsigned int indices[] =
@@ -170,6 +170,10 @@ void Geometry::CreateGrid(float width, float depth, unsigned int m, unsigned int
 
 			mesh->vertices[i * n + j].u = j * du;
 			mesh->vertices[i * n + j].v = i * dv;
+
+			mesh->vertices[i * n + j].tx = 1.0f;
+			mesh->vertices[i * n + j].ty = 0.0f;
+			mesh->vertices[i * n + j].tz = 0.0f;
 		}
 	}
 
@@ -237,6 +241,10 @@ void Geometry::CreateCylinder(float bottomRadius, float topRadius, float height,
 
 			DirectX::XMFLOAT3 tangentU = DirectX::XMFLOAT3(-s, 0.0f, c);
 
+			vertex.tx = tangentU.x;
+			vertex.ty = tangentU.y;
+			vertex.tz = tangentU.z;
+
 			float dr = bottomRadius - topRadius;
 			DirectX::XMFLOAT3 bitangent(dr * c, -height, dr * s);
 
@@ -287,21 +295,25 @@ void Geometry::CreateFullscreenQuad(MeshData* meshData)
 	meshData->vertices[0] = Vertex(
 		-1.0f, -1.0f, 0.0f,
 		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f,
 		0.0f, 1.0f);
 
 	meshData->vertices[1] = Vertex(
 		-1.0f, +1.0f, 0.0f,
 		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f);
 
 	meshData->vertices[2] = Vertex(
 		+1.0f, +1.0f, 0.0f,
 		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f,
 		1.0f, 0.0f);
 
 	meshData->vertices[3] = Vertex(
 		+1.0f, -1.0f, 0.0f,
 		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f,
 		1.0f, 1.0f);
 
 	meshData->indices[0] = 0;
@@ -325,8 +337,8 @@ void Geometry::CreateSphere(float radius, unsigned int sliceCount, unsigned int 
 	// Poles: note that there will be texture coordinate distortion as there is
 	// not a unique point on the texture map to assign to the pole when mapping
 	// a rectangular texture onto a sphere.
-	Vertex topVertex(0.0f, +radius, 0.0f, 0.0f, +1.0f, 0.0f, 0.0f, 0.0f);
-	Vertex bottomVertex(0.0f, -radius, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f);
+	Vertex topVertex(0.0f, +radius, 0.0f, 0.0f, +1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	Vertex bottomVertex(0.0f, -radius, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	meshData->vertices.push_back(topVertex);
 
@@ -351,12 +363,17 @@ void Geometry::CreateSphere(float radius, unsigned int sliceCount, unsigned int 
 			v.z = radius * sinf(phi) * sinf(theta);
 
 			// Partial derivative of P with respect to theta
-			/*v.TangentU.x = -radius * sinf(phi) * sinf(theta);
-			v.TangentU.y = 0.0f;
-			v.TangentU.z = +radius * sinf(phi) * cosf(theta);*/
+			float tx = -radius * sinf(phi) * sinf(theta);
+			float ty = 0.0f;
+			float tz = +radius * sinf(phi) * cosf(theta);
 
-			/*DirectX::XMVECTOR T = DirectX::XMLoadFloat3(&v.TangentU);
-			DirectX::XMStoreFloat3(&v.TangentU, DirectX::XMVector3Normalize(T));*/
+			DirectX::XMFLOAT3 tangent(tx, ty, tz);
+			DirectX::XMVECTOR T = DirectX::XMLoadFloat3(&tangent);
+			DirectX::XMStoreFloat3(&tangent, DirectX::XMVector3Normalize(T));
+
+			v.tx = tangent.x;
+			v.ty = tangent.y;
+			v.tz = tangent.z;
 
 			// Normals
 			DirectX::XMFLOAT3 pos = DirectX::XMFLOAT3(v.x, v.y, v.z);

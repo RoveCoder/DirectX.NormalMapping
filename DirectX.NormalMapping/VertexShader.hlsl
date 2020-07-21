@@ -12,11 +12,18 @@ PixelInput main(VertexInput input)
 	// Transform to world space.
 	output.Position = mul(float4(input.Position, 1.0f), World).xyz;
 
-	// Copy UVs
-	output.Texture = input.Texture;
+	// Transform UVs
+	output.Texture = mul(float4(input.Texture, 1.0f, 1.0f), TextureTransform).xy;
 
 	// Transform normals by inverse world
 	output.Normal = mul(input.Normal, (float3x3)InverseWorld).xyz;
+
+	// Normal mapping
+	output.Tangent = mul(input.Tangent, (float3x3)InverseWorld);
+	output.BitTangent = mul(input.BitTangent, (float3x3)InverseWorld);
+
+	output.Tangent = normalize(output.Tangent);
+	output.BitTangent = normalize(output.BitTangent);
 
 	return output;
 }
