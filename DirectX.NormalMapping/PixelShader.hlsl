@@ -52,10 +52,9 @@ float4 main(PixelInput input) : SV_TARGET
 
 	// Build orthonormal basis.
 	float3 N = input.Normal;
-	// float3 T = normalize(pin.TangentW - dot(pin.TangentW, N) * N); //< This seems to fix the normal swap, but it feels wrong
-	float3 T = normalize(input.Normal - dot(input.Tangent, N) * N);
+	float3 T = normalize(input.Tangent - dot(input.Tangent, N) * N);
 	float3 B = cross(N, T);
-
+	 
 	float3x3 TBN = float3x3(T, B, N);
 
 	// Transform from tangent space to world space.

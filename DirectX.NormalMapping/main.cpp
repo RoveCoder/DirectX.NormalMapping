@@ -102,6 +102,7 @@ int main(int argc, char** argv)
 					camera->Resize(e.window.data1, e.window.data2);
 					break;
 				}
+				break;
 
 			case SDL_MOUSEMOTION:
 				if (e.motion.state == SDL_BUTTON_LMASK)
